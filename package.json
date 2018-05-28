@@ -1,0 +1,22 @@
+{
+  "name": "dialogflow-vis",
+  "version": "0.0.1",
+  "description": "Dialogflow intent visualizer",
+  "main": "dist/dialogflow-vis.js",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "Dialogflow",
+    "Actions-on-Google"
+  ],
+  "author": "Aza Tulepbergenov",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "typescript": "^2.7.2"
+  },
+  "dependencies": {
+    "@types/node": "^9.4.6"
+  }
+}

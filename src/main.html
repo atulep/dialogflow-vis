@@ -1,0 +1,64 @@
+<html>
+<head>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" rel="stylesheet" type="text/css" />
+
+    <style type="text/css">
+        #mynetwork {
+            width: 600px;
+            height: 400px;
+            border: 1px solid lightgray;
+        }
+    </style>
+</head>
+<body>
+<div id="mynetwork"></div>
+
+<script type="text/javascript">
+    // create an array with nodes
+    var nodes = new vis.DataSet([
+        {id: 1, label: 'Default Welcome Intent\n"Hello"'},
+        {id: 2, label: 'get_direction'},
+        {id: 3, label: 'Default Fallback'},
+        {id: 4, label: 'other'}
+    ]);
+
+    // create an array with edges
+    var edges = new vis.DataSet([
+        {from: 1, to: 3, label: 'foo'},
+        {from: 1, to: 2, label: 'bar'},
+        {from: 2, to: 4, label: 'bro'},
+        {from: 3, to: 4, label: 'dude'}
+    ]);
+
+    // create a network
+    var container = document.getElementById('mynetwork');
+
+    // provide the data in the vis format
+    var data = {
+        nodes: nodes,
+        edges: edges
+    };
+
+    var interaction = {
+        //dragNodes: false,
+        //dragView: false
+    };
+
+    var layout = {
+        hierarchical: {
+            direction: 'UD',
+            sortMethod: "directed"
+        }
+    }
+
+    var options = {
+        interaction,
+        layout
+    };
+
+    // initialize your network!
+    var network = new vis.Network(container, data, options);
+</script>
+</body>
+</html>
