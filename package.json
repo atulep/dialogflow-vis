@@ -4,7 +4,7 @@
   "description": "Dialogflow intent visualizer",
   "main": "dist/dialogflow-vis.js",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && cp src/codegen/*.html dist",
     "clean": "rm -rf dist",
     "test": "mocha -r ts-node/register test/**/*.ts"
   },
