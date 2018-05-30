@@ -1,11 +1,10 @@
 import { Graph } from "../graph/graph";
 import { GraphHtmlCodegenVisitor } from "./graph-html-codegen-visitor";
+import { GraphCodegen } from "./graph-codegen";
 
-export class GraphHtmlCodegen {
-  private _graph: Graph;
-  
+export class GraphHtmlCodegen extends GraphCodegen {  
   constructor(graph: Graph) {
-    this._graph = graph;
+    super(graph);
   }
   
   codegen(): string {

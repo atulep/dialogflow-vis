@@ -3,23 +3,24 @@ import fs = require("fs");
 import { GraphCodegenVisitor } from "./graph-codegen-visitor";
 import { GraphHtmlCodegenVisitor } from "./graph-html-codegen-visitor";
 import { GraphHtmlCodegen } from "./graph-html-codegen";
+import { AgentCodegen } from "./agent-codegen";
+import { GraphCodegen } from "./graph-codegen";
 
-export class AgentHtmlCodegen {
-  private _graph: Graph;
-  private _code: string;
+export class AgentHtmlCodegen extends AgentCodegen {
   private readonly PATH_TO_TEMPLATE: string = './agent-template.html';
-  private readonly CODEGEN_DELIMITER: string = 'CODEGEN_START';
 
   constructor(graph: Graph) {
-    this._graph = graph;
-    this._code = '';
+    super(graph);
   }
   codegen(): string {
-    let htmlTemplate = fs.readFileSync(this.PATH_TO_TEMPLATE, 'utf-8');
-    let graphHtmlCodegen: GraphHtmlCodegen = new GraphHtmlCodegen(this._graph);
-    const graphCode: string = graphHtmlCodegen.codegen();
-    const insertionPoint = htmlTemplate.indexOf(this.CODEGEN_DELIMITER) + this.CODEGEN_DELIMITER.length;
-    let result = htmlTemplate.slice(0, insertionPoint) + "\n" + graphCode + "\n" + htmlTemplate.slice(insertionPoint);    
-    return result;
+    return super.codegen();
+  }
+
+  createGraphCodegen(): GraphCodegen {
+    return new GraphHtmlCodegen(this._graph);
+  }
+
+  createSrcTemplate(): string {
+    return fs.readFileSync(this.PATH_TO_TEMPLATE, 'utf-8');
   }
 }
