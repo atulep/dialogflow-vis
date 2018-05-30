@@ -15,18 +15,9 @@ export class Agent {
    * Reads the agent directed at path, and merges files that relate to the one intent.
    */
   private read(): Array<object> {
-    let intentsMap = {
-      [Symbol.iterator]: function* () {
-        let properties = Object.keys(this);
-        for (let i of properties) {
-            yield [i, this[i]];
-        }
-      }  
-    };
-    
+    let intentsMap: Map<string, object> = new Map();
     const path_to_intents = this.path + '/' + this.INTENTS;
     const files: Array<string> = fs.readdirSync(path_to_intents);
-    
     files.forEach(element => {
       const parsedFile: object =  JSON.parse(fs.readFileSync(path_to_intents + '/' + element, 'utf-8'));
       const fname: string = path.basename(element, '.json');
@@ -34,13 +25,13 @@ export class Agent {
       for (let [key, val] of intentsMap) {
         // ONLY SUPPORTS ENGLISH SO FAR
         if (fname === key + '_usersays_en') {
-          (<any> intentsMap)[key].userSays = (<any> parsedFile).map((k: any) => k.data[0].text);
+          (<any> intentsMap.get(key)).userSays = (<any> parsedFile).map((k: any) => k.data[0].text);
           insert = false;
           break;
         }
       }
-      if (insert) (<any> intentsMap)[fname] = parsedFile;
+      if (insert) intentsMap.set(fname, parsedFile);
     });
-    return Object.keys(intentsMap).map(key => (<any>intentsMap)[key])
+    return Array.from(intentsMap.values());
   }
 }
