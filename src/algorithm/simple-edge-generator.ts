@@ -23,7 +23,6 @@ export class SimpleEdgeGenerator extends EdgeGenerator {
       for (let intentB of this.vertices) {
         if (intentA === intentB) continue;
         // Case 1
-        console.log(intentA.outputContexts);
         if ((intentB.inputContexts.length === 0 && intentA.outputContexts.length === 0)
             || intentB.inputContexts.length === 0) {
           edges.push(new Edge(intentA, intentB));

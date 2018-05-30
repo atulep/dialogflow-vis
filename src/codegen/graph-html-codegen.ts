@@ -8,68 +8,65 @@ export class GraphHtmlCodegen extends GraphCodegen {
   }
   
   codegen(): string {
-      let res = '';
-      res += this.generateVertices();
-      res += this.generateEdges();
-      res += this.generateOptions();
-      res += this.initNetwork();
-      return res;
+      let res: Array<string> = [];
+      res.push(this.generateVertices());
+      res.push(this.generateEdges());
+      res.push(this.generateOptions());
+      res.push(this.initNetwork());
+      return res.join('\n');
   }
 
   private generateEdges(): string {
-    let edgesString = 'var edges = new vis.DataSet([\n';
+    let code: Array<string> = [];
+    code.push('var edges = new vis.DataSet([');
     let graphCodegenVisitor: GraphHtmlCodegenVisitor = new GraphHtmlCodegenVisitor();
-    let first = true;
+    let edgeCode: Array<string> = [];
     for (let e of this._graph.edges) {
-     if (!first) edgesString += ',\n';
-     edgesString += e.accept(graphCodegenVisitor);
-     if (first) first = false; 
+      edgeCode.push('  ' + e.accept(graphCodegenVisitor));
     }
-    edgesString += ']);\n';
-    return edgesString;
+    code.push(edgeCode.join(',\n'));
+    code.push(']);');
+    return code.join('\n');
   }
 
   private generateOptions(): string {
-    let optionsString = "\
-          var interaction = {\
-            dragNodes: true,\
-            dragView: true\
-          };\
-          var layout = {\
-            hierarchical: {\
-              enabled: true,\
-              direction: 'UD',\
-              sortMethod: 'directed',\
-              nodeSpacing: 150,\
-              parentCentralization: true\
-            }\
-          };\
-          var physics = { enabled: false };\
-          "
-    optionsString += "\n";
-    optionsString += "var options = { interaction, layout, physics };"
-    return optionsString;
+    return [
+          'var interaction = {',
+          '  dragNodes: true,',
+          '  dragView: true',
+          '};',
+          'var layout = {',
+          '  hierarchical: {',
+          '  enabled: true,',
+          '  direction: "UD",',
+          '  sortMethod: "directed",',
+          '  nodeSpacing: 150,',
+          '  parentCentralization: true',
+          '  }',
+          '};',
+          'var physics = { enabled: false };',
+          'var options = { interaction, layout, physics };'
+    ].join('\n');
   }
 
   private initNetwork(): string {
-    let initNetwork: string = "\
-      var container = document.getElementById('mynetwork');\
-      var data = { nodes: nodes, edges: edges };\
-      var network = new vis.Network(container, data, options);\
-      "
-    return initNetwork;
+    return [
+      'var container = document.getElementById("mynetwork");',
+      'var data = { nodes: nodes, edges: edges };',
+      'var network = new vis.Network(container, data, options);'
+    ].join('\n');
   }
 
   private generateVertices(): string {
-    let nodesString = 'var nodes = new vis.DataSet([\n';
+    let code: Array<string> = [];
+    code.push('var nodes = new vis.DataSet([');
     let graphCodegenVisitor: GraphHtmlCodegenVisitor = new GraphHtmlCodegenVisitor();
-    let first = true;
+    let verticesCode: Array<string> = [];
     for (let v of this._graph.vertices) {
-     if (!first) nodesString += ',\n';
-     nodesString += v.accept(graphCodegenVisitor);
-     if (first) first = false; 
+      verticesCode.push('  ' + v.accept(graphCodegenVisitor));
     }
-    nodesString += ']);\n';
-    return nodesString;
+    code.push(verticesCode.join(',\n'));
+    code.push(']);');
+    return code.join('\n');
   }
 }

@@ -9,8 +9,7 @@ export class GraphHtmlCodegenVisitor extends GraphCodegenVisitor {
     if (obj instanceof Vertex) {
       return `{id: "${obj.id}", label: "${obj.id}"}`;
     } else if (obj instanceof Edge) {
-      return `{from: "${obj.from.id}", to: "${obj.to.id}", \
-              arrows: { to: {enabled: true} }}`;
+      return `{from: "${obj.from.id}", to: "${obj.to.id}", arrows: { to: {enabled: true} }}`;
     } else {
       return '';
     }

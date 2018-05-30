@@ -34,7 +34,6 @@ export class Agent {
       for (let [key, val] of intentsMap) {
         // ONLY SUPPORTS ENGLISH SO FAR
         if (fname === key + '_usersays_en') {
-          console.log('found fname' + fname);
           (<any> intentsMap)[key].userSays = (<any> parsedFile).map((k: any) => k.data[0].text);
           insert = false;
           break;
