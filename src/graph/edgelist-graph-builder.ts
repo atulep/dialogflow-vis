@@ -2,16 +2,33 @@ import { GraphBuilder } from "./graph-builder";
 import { Graph } from "./graph";
 import { Vertex } from "./vertex";
 //import { IntentFactory } from "../parser/intent-factory";
-import { Parser } from "../parser/parser";
 import { Edge } from './edge';
 import { EdgeGenerator } from "../algorithm/edge-generator";
 import { SimpleEdgeGenerator } from "../algorithm/simple-edge-generator";
+import { DialogflowParser } from "../parser/dialogflow-parser";
 
 export class EdgeListGraphBuilder extends GraphBuilder {
-  private parser: Parser;
-  constructor(parser: Parser) {
+  private _parser: DialogflowParser;
+
+  /**
+   * Getter parser
+   * @return {DialogflowParser}
+   */
+	public get parser(): DialogflowParser {
+		return this._parser;
+	}
+
+  /**
+   * Setter parser
+   * @param {DialogflowParser} value
+   */
+	public set parser(value: DialogflowParser) {
+		this._parser = value;
+	}
+  
+  constructor(parser: DialogflowParser) {
     super();
-    this.parser = parser;
+    this._parser = parser;
   }
   buildGraph(): void {
     this.graph = new Graph();

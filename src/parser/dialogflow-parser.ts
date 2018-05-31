@@ -1,4 +1,3 @@
-import { Parser } from './parser'
 import { Graph } from './../graph/graph'
 import { Agent } from './agent'
 //import { IntentFactory } from './intent-factory';
@@ -9,11 +8,29 @@ import { EdgeListGraphBuilder } from '../graph/edgelist-graph-builder';
 
 // Builder: Director
 // Strategy: Context
-export class DialogflowParser extends Parser {
+export class DialogflowParser {
+  private _agent: Agent;
+
+  /**
+   * Getter agent
+   * @return {Agent}
+   */
+	public get agent(): Agent {
+		return this._agent;
+	}
+
+  /**
+   * Setter agent
+   * @param {Agent} value
+   */
+	public set agent(value: Agent) {
+		this._agent = value;
+	}
+  
   constructor(agent: Agent) {
-    super();
-    this.agent = agent;
+    this._agent = agent;
   }
+  
   parse(): Graph {
     let graphBuilder: GraphBuilder = new EdgeListGraphBuilder(this);
     graphBuilder.buildGraph();

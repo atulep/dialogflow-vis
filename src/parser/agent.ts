@@ -4,11 +4,27 @@ import path = require('path');
 export class Agent {
   private path: string
   private readonly INTENTS: string = 'intents';
-  public intents: Array<object>;
+  private _intents: Array<object>;
 
+  /**
+   * Getter intents
+   * @return {Array<object>}
+   */
+	public get intents(): Array<object> {
+		return this._intents;
+	}
+
+  /**
+   * Setter intents
+   * @param {Array<object>} value
+   */
+	public set intents(value: Array<object>) {
+		this._intents = value;
+	}
+  
   constructor(path: string) {
     this.path = path;
-    this.intents = this.read();
+    this._intents = this.read();
   }
   
   /**
