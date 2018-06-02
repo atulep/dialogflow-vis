@@ -42,7 +42,7 @@ export class DialogflowParser {
   parseIntent(intent: any): Vertex {
     const metadata = {
       inputContexts: intent.contexts,
-      outputContexts: intent.responses[0].affectedContexts,
+      outputContexts: intent.responses[0].affectedContexts.map((x: any) => x.name),
       events: intent.events.map((x: any) => x.name),
       userSays: intent.userSays
     }

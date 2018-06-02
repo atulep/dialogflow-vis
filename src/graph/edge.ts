@@ -4,7 +4,29 @@ import { GraphCodegenVisitor } from '../codegen/graph-codegen-visitor';
 export class Edge {
   private _from: Vertex;
   private _to: Vertex;
+  private _label: string;
 
+  /**
+   * Getter label
+   * @return {string}
+   */
+	public get label(): string { 
+    const updLabel: string = this.from.outputContexts.filter
+                            (x => this.to.inputContexts.includes(x)).toString();
+    if (this._label !== updLabel) {
+      this.label = updLabel
+    }
+		return this._label;
+	}
+
+  /**
+   * Setter label
+   * @param {string} value
+   */
+	public set label(value: string) {
+		this._label = value;
+	}
+  
   /**
    * Getter from
    * @return {Vertex}
@@ -41,6 +63,7 @@ export class Edge {
     this._from = from;
     this._to = to;
   }
+
   public accept(visitor: GraphCodegenVisitor): string {
     return visitor.visit(this);
   }
