@@ -1,13 +1,6 @@
 import { EdgeGenerator } from "./edge-generator";
 import { Edge } from "../graph/edge";
 
-/* TODO:
-1. refactor && add tests
-2. om fitire add edge merging functionality (to reduce number of edges)
-3. add different kinds of visitors - edge visitor and vertex visitor and graph visitor
-4. add different kinds of vertices - start vertex, 
-
-*/
 export class SimpleEdgeGenerator extends EdgeGenerator {
   generateEdges(): Array<Edge> {
     /*
@@ -21,6 +14,7 @@ export class SimpleEdgeGenerator extends EdgeGenerator {
     let edges: Array<Edge> = [];
     for (let intentA of this.vertices) {
       for (let intentB of this.vertices) {
+        // TODO: (atulep) I shouldn't ignore self edges, should I?
         if (intentA === intentB) continue;
         // Case 1
         if ((intentB.inputContexts.length === 0 && intentA.outputContexts.length === 0)

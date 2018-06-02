@@ -1,7 +1,6 @@
 import { GraphBuilder } from "./graph-builder";
 import { Graph } from "./graph";
 import { Vertex } from "./vertex";
-//import { IntentFactory } from "../parser/intent-factory";
 import { Edge } from './edge';
 import { EdgeGenerator } from "../algorithm/edge-generator";
 import { SimpleEdgeGenerator } from "../algorithm/simple-edge-generator";
