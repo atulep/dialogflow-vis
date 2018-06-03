@@ -15,7 +15,7 @@ export class SimpleEdgeGenerator extends EdgeGenerator {
     for (let intentA of this.vertices) {
       for (let intentB of this.vertices) {
         // TODO: (atulep) I shouldn't ignore self edges, should I?
-        if (intentA === intentB) continue;
+        // if (intentA === intentB) continue;
         // Case 1
         if ((intentB.inputContexts.length === 0 && intentA.outputContexts.length === 0)
             || intentB.inputContexts.length === 0) {
