@@ -6,6 +6,9 @@
   "engines": {
     "node": ">=6.0.0"
   },
+  "bin": {
+    "dfvis": "./dist/dialogflow-vis.js"
+  },
   "scripts": {
     "build": "tsc && cp src/codegen/*.html dist",
     "clean": "rm -rf dist",

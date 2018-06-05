@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { DialogflowParser } from './parser/dialogflow-parser'
 import { Agent } from './parser/agent';
 import { AgentHtmlCodegen } from './codegen/agent-html-codegen';
