@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "Dialogflow intent visualizer",
   "main": "dist/dialogflow-vis.js",
+  "engines": {
+    "node": ">=6.0.0"
+  },
   "scripts": {
     "build": "tsc && cp src/codegen/*.html dist",
     "clean": "rm -rf dist",
