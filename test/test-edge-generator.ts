@@ -75,7 +75,7 @@ describe('Agent 4', () => {
     });
     let vB: Vertex = new Vertex('B', {
       events: [],
-      inputContexts: ['a', 'b'],
+      inputContexts: ['a'],
       outputContexts: ['c', 'd']
     });
     let vC: Vertex = new Vertex('C', {
