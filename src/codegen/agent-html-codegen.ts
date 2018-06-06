@@ -7,7 +7,8 @@ import { AgentCodegen } from "./agent-codegen";
 import { GraphCodegen } from "./graph-codegen";
 
 export class AgentHtmlCodegen extends AgentCodegen {
-  private readonly PATH_TO_TEMPLATE: string = './agent-template.html';
+  // TODO: Use fs built-in path joiner to allow cross-platform support.
+  private readonly PATH_TO_TEMPLATE: string = __dirname + '/' + 'agent-template.html';
 
   constructor(graph: Graph) {
     super(graph);
