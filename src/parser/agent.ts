@@ -32,10 +32,10 @@ export class Agent {
    */
   private read(): Array<object> {
     let intentsMap: Map<string, object> = new Map();
-    const path_to_intents = this.path + '/' + this.INTENTS;
+    const path_to_intents = path.join(this.path, this.INTENTS);
     const files: Array<string> = fs.readdirSync(path_to_intents);
     files.forEach(element => {
-      const parsedFile: object =  JSON.parse(fs.readFileSync(path_to_intents + '/' + element, 'utf-8'));
+      const parsedFile: object =  JSON.parse(fs.readFileSync(path.join(path_to_intents, element), 'utf-8'));
       const fname: string = path.basename(element, '.json');
       let insert: boolean = true;
       for (let [key, val] of intentsMap) {

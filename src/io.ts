@@ -1,4 +1,5 @@
 import fs = require('fs');
+import path = require('path');
 
 export class IO {
   private _in: string;
@@ -43,12 +44,16 @@ export class IO {
 
   write(code: string): void {
     if (this._out) {
-      if (fs.existsSync(this._out + '.html')) {
-        console.log(`File ${this._out} already exists`);
+      const fileName = path.format({
+        name: this._out,
+        ext: '.html'
+      });
+      if (fs.existsSync(fileName)) {
+        console.log(`File ${fileName} already exists`);
         console.log('No action was performed.');
       } else { 
-        fs.writeFileSync(this._out + '.html', code, 'utf-8');
-        console.log(`${this._out}.html was created`);
+        fs.writeFileSync(fileName, code, 'utf-8');
+        console.log(`${fileName} was created`);
       }
     } else {
       console.log(code);

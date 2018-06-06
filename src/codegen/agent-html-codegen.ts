@@ -5,10 +5,14 @@ import { GraphHtmlCodegenVisitor } from "./graph-html-codegen-visitor";
 import { GraphHtmlCodegen } from "./graph-html-codegen";
 import { AgentCodegen } from "./agent-codegen";
 import { GraphCodegen } from "./graph-codegen";
+import path = require('path');
 
 export class AgentHtmlCodegen extends AgentCodegen {
-  // TODO: Use fs built-in path joiner to allow cross-platform support.
-  private readonly PATH_TO_TEMPLATE: string = __dirname + '/' + 'agent-template.html';
+  private readonly PATH_TO_TEMPLATE: string = path.format({
+    dir: __dirname,
+    name: 'agent-template',
+    ext: '.html'
+  });
 
   constructor(graph: Graph) {
     super(graph);
