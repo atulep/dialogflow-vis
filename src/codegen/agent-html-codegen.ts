@@ -1,7 +1,5 @@
 import { Graph } from "../graph/graph";
 import fs = require("fs");
-import { GraphCodegenVisitor } from "./graph-codegen-visitor";
-import { GraphHtmlCodegenVisitor } from "./graph-html-codegen-visitor";
 import { GraphHtmlCodegen } from "./graph-html-codegen";
 import { AgentCodegen } from "./agent-codegen";
 import { GraphCodegen } from "./graph-codegen";

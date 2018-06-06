@@ -4,6 +4,7 @@ import { SimpleEdgeGenerator } from './../src/algorithm/simple-edge-generator';
 import { EdgeGenerator } from './../src/algorithm/edge-generator';
 import { Edge } from '../src/graph/edge';
 import { Vertex } from '../src/graph/vertex';
+import { NonLabelEdge } from '../src/graph/non-label-edge';
 
 describe('Agent 1', () => {
   it('Should return list of edges containing two edges', () => {
@@ -18,8 +19,8 @@ describe('Agent 1', () => {
       outputContexts: ['a']
     });
     let result: Array<Edge> = [];
-    result.push(new Edge(vA, vB));
-    result.push(new Edge(vB, vA));
+    result.push(new NonLabelEdge(vA, vB));
+    result.push(new NonLabelEdge(vB, vA));
     let gen: EdgeGenerator = new SimpleEdgeGenerator([vA, vB]);
     expect(gen.generateEdges()).to.deep.equal(result);
   });
@@ -56,10 +57,10 @@ describe('Agent 3', () => {
       outputContexts: ['a']
     });
     let result: Array<Edge> = [];
-    result.push(new Edge(vA, vB));
-    result.push(new Edge(vB, vA));
-    result.push(new Edge(vA, vA));
-    result.push(new Edge(vB, vB));
+    result.push(new NonLabelEdge(vA, vB));
+    result.push(new NonLabelEdge(vB, vA));
+    result.push(new NonLabelEdge(vA, vA));
+    result.push(new NonLabelEdge(vB, vB));
     let gen: EdgeGenerator = new SimpleEdgeGenerator([vA, vB]);
     expect(gen.generateEdges()).to.have.deep.members(result);
     expect(result).to.have.deep.members(gen.generateEdges());
@@ -84,11 +85,11 @@ describe('Agent 4', () => {
       outputContexts: []
     })
     let result: Array<Edge> = [];
-    result.push(new Edge(vA, vB));
-    result.push(new Edge(vB, vA));
-    result.push(new Edge(vA, vA));
-    result.push(new Edge(vB, vC));
-    result.push(new Edge(vC, vA));
+    result.push(new NonLabelEdge(vA, vB));
+    result.push(new NonLabelEdge(vB, vA));
+    result.push(new NonLabelEdge(vA, vA));
+    result.push(new NonLabelEdge(vB, vC));
+    result.push(new NonLabelEdge(vC, vA));
     let gen: EdgeGenerator = new SimpleEdgeGenerator([vA, vB, vC]);
     expect(gen.generateEdges()).to.have.deep.members(result);
     expect(result).to.have.deep.members(gen.generateEdges());

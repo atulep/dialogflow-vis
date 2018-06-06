@@ -1,7 +1,7 @@
 import { Vertex } from './vertex'
 import { GraphCodegenVisitor } from '../codegen/graph-codegen-visitor';
 
-export class Edge {
+export abstract class Edge {
   private _from: Vertex;
   private _to: Vertex;
   private _label: string;
@@ -10,12 +10,7 @@ export class Edge {
    * Getter label
    * @return {string}
    */
-	public get label(): string { 
-    const updLabel: string = this.from.outputContexts.filter
-                            (x => this.to.inputContexts.includes(x)).toString();
-    if (this._label !== updLabel) {
-      this.label = updLabel
-    }
+	public get label(): string {
 		return this._label;
 	}
 
@@ -25,8 +20,8 @@ export class Edge {
    */
 	public set label(value: string) {
 		this._label = value;
-	}
-  
+  }
+
   /**
    * Getter from
    * @return {Vertex}
@@ -57,14 +52,20 @@ export class Edge {
    */
 	public set to(value: Vertex) {
 		this._to = value;
-	}
+  }
   
+  /**
+   * Concrete implementations will define what the edge of a label is.
+   */
+  public abstract createLabel(): void;
+
   constructor(from: Vertex, to: Vertex) {
     this._from = from;
     this._to = to;
   }
 
   public accept(visitor: GraphCodegenVisitor): string {
+    this.createLabel();
     return visitor.visit(this);
   }
 }

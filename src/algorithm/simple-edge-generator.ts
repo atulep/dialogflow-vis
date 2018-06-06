@@ -1,6 +1,11 @@
 import { EdgeGenerator } from "./edge-generator";
 import { Edge } from "../graph/edge";
+import { NonLabelEdge } from "../graph/non-label-edge";
 
+/* TODO: (atulep) 
+  1. Implement case 2
+  2. Use factories for creating edges
+*/ 
 export class SimpleEdgeGenerator extends EdgeGenerator {
   generateEdges(): Array<Edge> {
     /*
@@ -17,7 +22,7 @@ export class SimpleEdgeGenerator extends EdgeGenerator {
         // Case 1
         if ((intentB.inputContexts.length === 0 && intentA.outputContexts.length === 0)
             || intentB.inputContexts.length === 0) {
-          edges.push(new Edge(intentA, intentB));
+          edges.push(new NonLabelEdge(intentA, intentB));
         } else {
           let intersectionArray: Array<string> = [];
           for (let c of intentA.outputContexts) {
@@ -26,7 +31,7 @@ export class SimpleEdgeGenerator extends EdgeGenerator {
             }
           }
           if (intersectionArray.length === intentB.inputContexts.length) {
-            edges.push(new Edge(intentA, intentB));          
+            edges.push(new NonLabelEdge(intentA, intentB));          
           }
         }
       }
