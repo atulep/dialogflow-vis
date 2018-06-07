@@ -1,6 +1,7 @@
 import { Vertex } from "../graph/vertex";
 import { Edge } from "../graph/edge";
 import { GraphCodegenVisitor } from "./graph-codegen-visitor";
+import { DfWelcomeVertex } from "../graph/df-welcome-vertex";
 
 /**
  * This visitor will generate code associated with the vertices and edges of the graph.
@@ -10,10 +11,10 @@ import { GraphCodegenVisitor } from "./graph-codegen-visitor";
  */
 
 export class GraphHtmlCodegenVisitor extends GraphCodegenVisitor {  
-  private edgeCode = '';
-
   visit(obj): string {
-    if (obj instanceof Vertex) {
+    if (obj instanceof DfWelcomeVertex) {
+      return `{id: "${obj.id}", label: "${obj.id}", shape: "star" }`;
+    } else if (obj instanceof Vertex) {
       return `{id: "${obj.id}", label: "${obj.id}"}`;
     } else if (obj instanceof Edge) {
       return `{from: "${obj.from.id}", to: "${obj.to.id}", arrows: { to: {enabled: true} },` + 

@@ -43,6 +43,7 @@ export class GraphHtmlCodegen extends GraphCodegen {
           '    sortMethod: "directed",',
           '    nodeSpacing: 200,',
           '    levelSeparation: 200,',
+          '    treeSpacing: 300,',
           '    parentCentralization: true',
           '  }',
           '};',
