@@ -44,6 +44,10 @@ export class Agent {
           (<any> intentsMap.get(key)).userSays = (<any> parsedFile).map((k: any) => k.data[0].text);
           insert = false;
           break;
+        // TODO: (atulep) hacky way to check for non-english agents
+        } else if (fname.includes(key + '_usersays_')) {
+          const locale = fname.slice(fname.lastIndexOf('_usersays_') + '_usersays_'.length);
+          throw new Error(`Currently, this software doesn't support ${locale} locale.`);
         }
       }
       if (insert) intentsMap.set(fname, parsedFile);
