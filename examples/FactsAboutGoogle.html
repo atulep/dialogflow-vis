@@ -1,0 +1,102 @@
+<html>
+<head>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" rel="stylesheet" type="text/css" />
+
+    <style type="text/css">
+        #mynetwork {
+            width: 1200px;
+            height: 800px;
+            border: 1px solid lightgray;
+        }
+    </style>
+</head>
+<body>
+<div id="mynetwork"></div>
+
+<script type="text/javascript">
+    // CODEGEN_START
+var nodes = new vis.DataSet([
+  {id: "Default Welcome Intent", label: "Default Welcome Intent", shape: "star" },
+  {id: "In Dialog Fallback", label: "In Dialog Fallback"},
+  {id: "Unrecognized Deep Link Fallback", label: "Unrecognized Deep Link Fallback"},
+  {id: "choose_cats", label: "choose_cats"},
+  {id: "choose_fact", label: "choose_fact"},
+  {id: "quit_facts", label: "quit_facts"},
+  {id: "tell_cat_fact", label: "tell_cat_fact"},
+  {id: "tell_fact", label: "tell_fact"}
+]);
+var edges = new vis.DataSet([
+  {from: "Default Welcome Intent", to: "Default Welcome Intent", arrows: { to: {enabled: true} }, label: "" },
+  {from: "Default Welcome Intent", to: "In Dialog Fallback", arrows: { to: {enabled: true} }, label: "" },
+  {from: "Default Welcome Intent", to: "choose_cats", arrows: { to: {enabled: true} }, label: "" },
+  {from: "Default Welcome Intent", to: "choose_fact", arrows: { to: {enabled: true} }, label: "" },
+  {from: "Default Welcome Intent", to: "quit_facts", arrows: { to: {enabled: true} }, label: "" },
+  {from: "In Dialog Fallback", to: "Default Welcome Intent", arrows: { to: {enabled: true} }, label: "" },
+  {from: "In Dialog Fallback", to: "In Dialog Fallback", arrows: { to: {enabled: true} }, label: "" },
+  {from: "In Dialog Fallback", to: "choose_cats", arrows: { to: {enabled: true} }, label: "" },
+  {from: "In Dialog Fallback", to: "choose_fact", arrows: { to: {enabled: true} }, label: "" },
+  {from: "In Dialog Fallback", to: "quit_facts", arrows: { to: {enabled: true} }, label: "" },
+  {from: "Unrecognized Deep Link Fallback", to: "Default Welcome Intent", arrows: { to: {enabled: true} }, label: "" },
+  {from: "Unrecognized Deep Link Fallback", to: "In Dialog Fallback", arrows: { to: {enabled: true} }, label: "" },
+  {from: "Unrecognized Deep Link Fallback", to: "choose_cats", arrows: { to: {enabled: true} }, label: "" },
+  {from: "Unrecognized Deep Link Fallback", to: "choose_fact", arrows: { to: {enabled: true} }, label: "" },
+  {from: "Unrecognized Deep Link Fallback", to: "quit_facts", arrows: { to: {enabled: true} }, label: "" },
+  {from: "choose_cats", to: "Default Welcome Intent", arrows: { to: {enabled: true} }, label: "" },
+  {from: "choose_cats", to: "In Dialog Fallback", arrows: { to: {enabled: true} }, label: "" },
+  {from: "choose_cats", to: "choose_cats", arrows: { to: {enabled: true} }, label: "" },
+  {from: "choose_cats", to: "choose_fact", arrows: { to: {enabled: true} }, label: "" },
+  {from: "choose_cats", to: "quit_facts", arrows: { to: {enabled: true} }, label: "" },
+  {from: "choose_cats", to: "tell_cat_fact", arrows: { to: {enabled: true} }, label: "" },
+  {from: "choose_cats", to: "tell_fact", arrows: { to: {enabled: true} }, label: "" },
+  {from: "choose_fact", to: "Default Welcome Intent", arrows: { to: {enabled: true} }, label: "" },
+  {from: "choose_fact", to: "In Dialog Fallback", arrows: { to: {enabled: true} }, label: "" },
+  {from: "choose_fact", to: "choose_cats", arrows: { to: {enabled: true} }, label: "" },
+  {from: "choose_fact", to: "choose_fact", arrows: { to: {enabled: true} }, label: "" },
+  {from: "choose_fact", to: "quit_facts", arrows: { to: {enabled: true} }, label: "" },
+  {from: "choose_fact", to: "tell_cat_fact", arrows: { to: {enabled: true} }, label: "" },
+  {from: "choose_fact", to: "tell_fact", arrows: { to: {enabled: true} }, label: "" },
+  {from: "quit_facts", to: "Default Welcome Intent", arrows: { to: {enabled: true} }, label: "" },
+  {from: "quit_facts", to: "In Dialog Fallback", arrows: { to: {enabled: true} }, label: "" },
+  {from: "quit_facts", to: "choose_cats", arrows: { to: {enabled: true} }, label: "" },
+  {from: "quit_facts", to: "choose_fact", arrows: { to: {enabled: true} }, label: "" },
+  {from: "quit_facts", to: "quit_facts", arrows: { to: {enabled: true} }, label: "" },
+  {from: "tell_cat_fact", to: "Default Welcome Intent", arrows: { to: {enabled: true} }, label: "" },
+  {from: "tell_cat_fact", to: "In Dialog Fallback", arrows: { to: {enabled: true} }, label: "" },
+  {from: "tell_cat_fact", to: "choose_cats", arrows: { to: {enabled: true} }, label: "" },
+  {from: "tell_cat_fact", to: "choose_fact", arrows: { to: {enabled: true} }, label: "" },
+  {from: "tell_cat_fact", to: "quit_facts", arrows: { to: {enabled: true} }, label: "" },
+  {from: "tell_cat_fact", to: "tell_cat_fact", arrows: { to: {enabled: true} }, label: "" },
+  {from: "tell_fact", to: "Default Welcome Intent", arrows: { to: {enabled: true} }, label: "" },
+  {from: "tell_fact", to: "In Dialog Fallback", arrows: { to: {enabled: true} }, label: "" },
+  {from: "tell_fact", to: "choose_cats", arrows: { to: {enabled: true} }, label: "" },
+  {from: "tell_fact", to: "choose_fact", arrows: { to: {enabled: true} }, label: "" },
+  {from: "tell_fact", to: "quit_facts", arrows: { to: {enabled: true} }, label: "" },
+  {from: "tell_fact", to: "tell_fact", arrows: { to: {enabled: true} }, label: "" }
+]);
+var interaction = {
+  dragNodes: true,
+  dragView: true
+};
+var layout = {
+  improvedLayout: true,
+  hierarchical: {
+    enabled: true,
+    direction: "UD",
+    sortMethod: "directed",
+    nodeSpacing: 200,
+    levelSeparation: 200,
+    treeSpacing: 300,
+    parentCentralization: true
+  }
+};
+var physics = { enabled: false };
+var options = { interaction, layout, physics };
+var container = document.getElementById("mynetwork");
+var data = { nodes: nodes, edges: edges };
+var network = new vis.Network(container, data, options);
+
+    // CODEGEN_END
+</script>
+</body>
+</html>
