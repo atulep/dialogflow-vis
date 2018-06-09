@@ -42,12 +42,12 @@ The tool parses intents from ```agent/intents/``` folder of a Dialogflow ```agen
 * B doesn’t have any input contexts
 * Set of output contexts of A contains is a superset of input contexts of B
 
-The resulted graph is then rendered into HTML using```vis.js``` (link)[http://visjs.org/] as the visualization engine. 
+The resulted graph is then rendered into HTML using```vis.js``` [link](http://visjs.org/) as the visualization engine. 
 
 # Examples
 See ```examples``` folder for generated HTML files for the following open-source samples:
-* official Actions on Google sample (“Number Genie”)[https://github.com/actions-on-google/dialogflow-number-genie-nodejs]
-* official Actions on Google sample (“Facts About Google”)[https://github.com/actions-on-google/dialogflow-facts-about-google-nodejs]
+* official Actions on Google sample [“Number Genie”](https://github.com/actions-on-google/dialogflow-number-genie-nodejs)
+* official Actions on Google sample [“Facts About Google”](https://github.com/actions-on-google/dialogflow-facts-about-google-nodejs)
 
 # License
 This software is Copyright 2018, Aza Tulepbergenov, and available under MIT license (see LICENSE).
