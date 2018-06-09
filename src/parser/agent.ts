@@ -45,7 +45,7 @@ export class Agent {
           insert = false;
           break;
         // TODO: (atulep) hacky way to check for non-english agents
-        } else if (fname.includes(key + '_usersays_')) {
+        } else if (fname.includes('_usersays_') && !fname.includes('_usersays_en')) {
           const locale = fname.slice(fname.lastIndexOf('_usersays_') + '_usersays_'.length);
           throw new Error(`Currently, this software doesn't support ${locale} locale.`);
         }
