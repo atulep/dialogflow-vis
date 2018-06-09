@@ -1,7 +1,7 @@
 {
   "name": "dialogflow-vis",
-  "version": "0.0.1",
-  "description": "Dialogflow intent visualizer",
+  "version": "0.1.0",
+  "description": "Dialogflow Agent Visualization Tool",
   "main": "dist/dialogflow-vis.js",
   "engines": {
     "node": ">=6.0.0"
@@ -19,7 +19,15 @@
     "Actions-on-Google"
   ],
   "author": "Aza Tulepbergenov",
-  "license": "Apache-2.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/atulep/dialogflow-vis.git"
+  },
+  "bugs": {
+    "url": "https://github.com/atulep/dialogflow-vis/issues"
+  },
+  "homepage": "https://github.com/atulep/dialogflow-vis",
   "devDependencies": {
     "typescript": "^2.7.2",
     "chai": "^4.1.2",
