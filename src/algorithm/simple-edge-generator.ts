@@ -11,7 +11,8 @@ export class SimpleEdgeGenerator extends EdgeGenerator {
     /*
       Connect each vertex in this.parser.agent.intents to all other vertices unless:
         Case 1: intent X has input context Ax and intent Y has output context By
-        Case 2: End the conversation then no edge
+        Case 2: End the conversation then no edge (**not supported**,
+          reason: DialogFlow JSON intents don't have info on that)
     */
     if (this.vertices.length === 0){ 
       throw new Error('Build vertices first.');

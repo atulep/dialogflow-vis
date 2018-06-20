@@ -4,7 +4,8 @@ import { Vertex } from "./vertex";
 import { Edge } from './edge';
 import { EdgeGenerator } from "../algorithm/edge-generator";
 import { SimpleEdgeGenerator } from "../algorithm/simple-edge-generator";
-import { DialogflowParser } from "../parser/dialogflow-parser";
+import { DialogflowParser, Intent } from "../parser/dialogflow-parser";
+import { DfWelcomeVertex } from "./df-welcome-vertex";
 
 export class EdgeListGraphBuilder extends GraphBuilder {
   private _parser: DialogflowParser;
@@ -41,7 +42,14 @@ export class EdgeListGraphBuilder extends GraphBuilder {
   buildVertices(): void {
     let vertices: Array<Vertex> = []
     for (let intent of this.parser.agent.intents) {
-      vertices.push(this.parser.parseIntent(intent));
+      const parsedIntent: Intent = this.parser.parseIntent(intent);
+      let vertex: Vertex;
+      if (parsedIntent.events.includes(this.parser.DF_WELCOME_INTENT)) {
+        vertex = new DfWelcomeVertex(parsedIntent);
+      } else {
+        vertex = new Vertex(parsedIntent);
+      }
+      vertices.push(vertex);
     }
     this.graph.vertices = vertices;
   }

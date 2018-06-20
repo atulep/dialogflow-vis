@@ -1,4 +1,5 @@
 import { GraphCodegenVisitor } from "../codegen/graph-codegen-visitor";
+import { Intent } from "../parser/dialogflow-parser";
 
 export class Vertex {
   private _id: string;
@@ -70,11 +71,11 @@ export class Vertex {
 		this._outputContexts = value;
   }
 
-  constructor(id: string, metadata: any) {
-    this._id = id;
-    this._inputContexts = metadata.inputContexts.map((x:string) => x);
-    this._outputContexts = metadata.outputContexts.map((x:string) => x);
-    this._events = metadata.events.map((x:string) => x);
+  constructor(intent: Intent) {
+    this._id = intent.name;
+    this._inputContexts = intent.inputContexts.map((x:string) => x);
+    this._outputContexts = intent.outputContexts.map((x:string) => x);
+    this._events = intent.events.map((x:string) => x);
   }
   
   public accept(visitor: GraphCodegenVisitor): string {

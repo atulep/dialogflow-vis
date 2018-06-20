@@ -12,7 +12,7 @@
   "scripts": {
     "build": "tsc && cp src/codegen/*.html dist/codegen",
     "clean": "rm -rf dist",
-    "test": "mocha -r ts-node/register test/**/*.ts"
+    "test": "npm run build && mocha -r ts-node/register test/**/*.ts"
   },
   "keywords": [
     "Dialogflow",

@@ -1,15 +1,21 @@
 import { Graph } from './../graph/graph'
 import { Agent } from './agent'
-import { Vertex } from './../graph/vertex'
 import { GraphBuilder } from '../graph/graph-builder';
 import { EdgeListGraphBuilder } from '../graph/edgelist-graph-builder';
-import { DfWelcomeVertex } from '../graph/df-welcome-vertex';
+
+export interface Intent {
+  name: string,
+  inputContexts: Array<string>,
+  outputContexts: Array<string>,
+  events: Array<string>,
+  userSays: Array<string>
+}
 
 // Builder: Director
 // Strategy: Context
 export class DialogflowParser {
   private _agent: Agent;
-  private readonly DF_WELCOME_INTENT: string = 'WELCOME';
+  public readonly DF_WELCOME_INTENT: string = 'WELCOME';
 
   /**
    * Getter agent
@@ -39,20 +45,14 @@ export class DialogflowParser {
     return graphBuilder.graph;
   }
 
-  parseIntent(intent: any): Vertex {
-    const metadata = {
-      inputContexts: intent.contexts,
-      outputContexts: intent.responses[0].affectedContexts.map((x: any) => x.name),
-      events: intent.events.map((x: any) => x.name),
-      userSays: intent.userSays
-    }
-    const name: string = intent.name;
-    // TODO: (atulep) Don't create vertices here; instead return an Object and let caller create
-    // appropriate vertices using a factory method.
-    if (metadata.events.includes(this.DF_WELCOME_INTENT)) {
-      return new DfWelcomeVertex(name, metadata);
-    } else {
-    return new Vertex(name, metadata);
-    }
+  parseIntent(obj: any): Intent {
+    let intent: Intent = {
+      name: obj.name,
+      inputContexts: obj.contexts,
+      outputContexts: obj.responses[0].affectedContexts.map((x: any) => x.name),
+      events: obj.events.map((x: any) => x.name),
+      userSays: obj.userSays
+    };
+    return intent;
   }
 }

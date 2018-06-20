@@ -8,15 +8,19 @@ import { NonLabelEdge } from '../src/graph/non-label-edge';
 
 describe('Agent 1', () => {
   it('Should return list of edges containing two edges', () => {
-    let vA: Vertex = new Vertex('A', {
+    let vA: Vertex = new Vertex({
+      name: 'A',
       events: [],
       inputContexts: ['a'],
-      outputContexts: ['b']
+      outputContexts: ['b'],
+      userSays: ['hello']
     });
-    let vB: Vertex = new Vertex('B', {
+    let vB: Vertex = new Vertex({
+      name: 'B',
       events: [],
       inputContexts: ['b'],
-      outputContexts: ['a']
+      outputContexts: ['a'],
+      userSays: ['hello']
     });
     let result: Array<Edge> = [];
     result.push(new NonLabelEdge(vA, vB));
@@ -28,15 +32,19 @@ describe('Agent 1', () => {
 
 describe('Agent 2', () => {
   it('Should return list of edges containing no edges', () => {
-    let vA: Vertex = new Vertex('A', {
+    let vA: Vertex = new Vertex({
+      name: 'A',
       events: [],
       inputContexts: ['a'],
-      outputContexts: ['b']
+      outputContexts: ['b'],
+      userSays: []
     });
-    let vB: Vertex = new Vertex('B', {
+    let vB: Vertex = new Vertex({
+      name: 'B',
       events: [],
       inputContexts: ['c'],
-      outputContexts: ['d']
+      outputContexts: ['d'],
+      userSays: []
     });
     let result: Array<Edge> = [];
     let gen: EdgeGenerator = new SimpleEdgeGenerator([vA, vB]);
@@ -46,15 +54,19 @@ describe('Agent 2', () => {
 
 describe('Agent 3', () => {
   it('Should return list of edges containing four edges', () => {
-    let vA: Vertex = new Vertex('A', {
+    let vA: Vertex = new Vertex({
+      name: 'A',
       events: [],
       inputContexts: [],
-      outputContexts: ['b']
+      outputContexts: ['b'],
+      userSays: []
     });
-    let vB: Vertex = new Vertex('B', {
+    let vB: Vertex = new Vertex({
+      name: 'B',
       events: [],
       inputContexts: [],
-      outputContexts: ['a']
+      outputContexts: ['a'],
+      userSays: []
     });
     let result: Array<Edge> = [];
     result.push(new NonLabelEdge(vA, vB));
@@ -69,20 +81,26 @@ describe('Agent 3', () => {
 
 describe('Agent 4', () => {
   it('Should return list of edges containing five edges', () => {
-    let vA: Vertex = new Vertex('A', {
+    let vA: Vertex = new Vertex({
+      name: 'A',
       events: [],
       inputContexts: [],
-      outputContexts: ['a']
+      outputContexts: ['a'],
+      userSays: []
     });
-    let vB: Vertex = new Vertex('B', {
+    let vB: Vertex = new Vertex({
+      name: 'B',
       events: [],
       inputContexts: ['a'],
-      outputContexts: ['c', 'd']
+      outputContexts: ['c', 'd'],
+      userSays: []
     });
-    let vC: Vertex = new Vertex('C', {
+    let vC: Vertex = new Vertex({
+      name: 'C',
       events: [],
       inputContexts: ['d'],
-      outputContexts: []
+      outputContexts: [],
+      userSays: []
     })
     let result: Array<Edge> = [];
     result.push(new NonLabelEdge(vA, vB));
