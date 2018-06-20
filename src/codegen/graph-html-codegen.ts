@@ -9,16 +9,55 @@ export class GraphHtmlCodegen extends GraphCodegen {
   
   codegen(): string {
       let res: Array<string> = [];
-      res.push(this.generateVertices());
-      res.push(this.generateEdges());
-      res.push(this.generateOptions());
-      res.push(this.initNetwork());
+      res.push(this.generateDeclarations());
+      res.push(this.generateDestroyFunction());
+      res.push(this.generateDrawFunction());
+      res.push(this.generateEventListeners());
       return res.join('\n');
+  }
+
+  private generateEventListeners(): string {
+    return ['labelCheckbox.onchange = function () {',
+            '  draw();',
+            '  console.log("box was changed");',
+            '};'].join('\n');
+  }
+
+  private generateDeclarations(): string {
+    return ['var nodes = null;',
+            'var edges = null;',
+            'var network = null;',
+            'var labelCheckbox = document.getElementById("labelCheckbox");'
+          ].join('\n');
+  }
+
+  private generateDestroyFunction(): string {
+    return ['function destroy() {',
+            '  if (network !== null) {',
+            '    network.destroy();',
+            '    network = null;',
+            '  }',
+            '}'].join('\n'); 
+  }
+
+  private generateDrawFunction(): string {
+    let s: Array<string> = [];
+    s.push(['function draw() {',
+            '  destroy();',
+            '  nodes = [];',
+            '  edges = [];'
+            ].join('\n'));
+    s.push(this.generateVertices());
+    s.push(this.generateEdges());
+    s.push(this.generateOptions());
+    s.push(this.initNetwork());
+    s.push('}');
+    return s.join('\n');
   }
 
   private generateEdges(): string {
     let code: Array<string> = [];
-    code.push('var edges = new vis.DataSet([');
+    code.push('edges = new vis.DataSet([');
     let graphCodegenVisitor: GraphHtmlCodegenVisitor = new GraphHtmlCodegenVisitor();
     let edgeCode: Array<string> = [];
     for (let e of this._graph.edges) {
@@ -56,13 +95,13 @@ export class GraphHtmlCodegen extends GraphCodegen {
     return [
       'var container = document.getElementById("mynetwork");',
       'var data = { nodes: nodes, edges: edges };',
-      'var network = new vis.Network(container, data, options);'
+      'network = new vis.Network(container, data, options);'
     ].join('\n');
   }
 
   private generateVertices(): string {
     let code: Array<string> = [];
-    code.push('var nodes = new vis.DataSet([');
+    code.push('nodes = new vis.DataSet([');
     let graphCodegenVisitor: GraphHtmlCodegenVisitor = new GraphHtmlCodegenVisitor();
     let verticesCode: Array<string> = [];
     for (let v of this._graph.vertices) {

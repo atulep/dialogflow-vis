@@ -11,7 +11,12 @@
         }
     </style>
 </head>
-<body>
+
+<body onload="draw();">
+<p>
+    <input type="checkbox" id="labelCheckbox">
+    <label for="labelCheckbox">Show labels on edges?</label>
+</p>
 <div id="mynetwork"></div>
 
 <script type="text/javascript">
