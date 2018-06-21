@@ -6,6 +6,7 @@ import { EdgeGenerator } from "../algorithm/edge-generator";
 import { SimpleEdgeGenerator } from "../algorithm/simple-edge-generator";
 import { DialogflowParser, Intent } from "../parser/dialogflow-parser";
 import { DfWelcomeVertex } from "./df-welcome-vertex";
+import { ContextAsLabelEdgeFactory } from "./context-as-a-label-edge-factory";
 
 export class EdgeListGraphBuilder extends GraphBuilder {
   private _parser: DialogflowParser;
@@ -35,7 +36,7 @@ export class EdgeListGraphBuilder extends GraphBuilder {
   }
 
   buildEdges(): void {
-    const edgeGenerator: EdgeGenerator = new SimpleEdgeGenerator(this.graph.vertices);
+    const edgeGenerator: EdgeGenerator = new SimpleEdgeGenerator(this.graph.vertices, new ContextAsLabelEdgeFactory());
     this.graph.edges = edgeGenerator.generateEdges();
   }
 

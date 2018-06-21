@@ -32,7 +32,7 @@ export class SimpleEdgeGenerator extends EdgeGenerator {
             }
           }
           if (intersectionArray.length === intentB.inputContexts.length) {
-            edges.push(new NonLabelEdge(intentA, intentB));          
+            edges.push(this.factory.createEdge(intentA, intentB));          
           }
         }
       }
