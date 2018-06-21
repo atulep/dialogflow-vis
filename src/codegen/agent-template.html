@@ -20,8 +20,23 @@
 <div id="mynetwork"></div>
 
 <script type="text/javascript">
+    var nodes = null;
+    var edges = null;
+    var network = null;
+    var labelCheckbox = document.getElementById("labelCheckbox");
+    function destroy() {
+        if (network !== null) {
+            network.destroy();
+            network = null;
+        }
+    }
+
     // CODEGEN_START
     // CODEGEN_END
+    labelCheckbox.onchange = function () {
+        draw();
+        console.log("box was changed");
+    }
 </script>
 </body>
 </html>

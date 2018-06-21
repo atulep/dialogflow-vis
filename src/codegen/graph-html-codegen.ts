@@ -9,35 +9,8 @@ export class GraphHtmlCodegen extends GraphCodegen {
   
   codegen(): string {
       let res: Array<string> = [];
-      res.push(this.generateDeclarations());
-      res.push(this.generateDestroyFunction());
       res.push(this.generateDrawFunction());
-      res.push(this.generateEventListeners());
       return res.join('\n');
-  }
-
-  private generateEventListeners(): string {
-    return ['labelCheckbox.onchange = function () {',
-            '  draw();',
-            '  console.log("box was changed");',
-            '};'].join('\n');
-  }
-
-  private generateDeclarations(): string {
-    return ['var nodes = null;',
-            'var edges = null;',
-            'var network = null;',
-            'var labelCheckbox = document.getElementById("labelCheckbox");'
-          ].join('\n');
-  }
-
-  private generateDestroyFunction(): string {
-    return ['function destroy() {',
-            '  if (network !== null) {',
-            '    network.destroy();',
-            '    network = null;',
-            '  }',
-            '}'].join('\n'); 
   }
 
   private generateDrawFunction(): string {
