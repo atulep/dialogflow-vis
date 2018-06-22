@@ -36,6 +36,7 @@ export class EdgeListGraphBuilder extends GraphBuilder {
   }
 
   buildEdges(): void {
+    // TODO: (atulep) Maybe making an edge factory into instance variable and have it as singleton would be better.
     const edgeGenerator: EdgeGenerator = new SimpleEdgeGenerator(this.graph.vertices, new ContextAsLabelEdgeFactory());
     this.graph.edges = edgeGenerator.generateEdges();
   }

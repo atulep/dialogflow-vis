@@ -62,10 +62,10 @@ export abstract class Edge {
   constructor(from: Vertex, to: Vertex) {
     this._from = from;
     this._to = to;
+    this.createLabel();
   }
 
   public accept(visitor: GraphCodegenVisitor): string {
-    this.createLabel();
     return visitor.visit(this);
   }
 }
