@@ -16,6 +16,7 @@
 <p>
     <input type="checkbox" id="labelCheckbox">
     <label for="labelCheckbox">Show labels on edges?</label>
+    <input type="button" id="rotationButton", title="Rotating the graph helps to see labels on edges better.", value="Rotate by 90 degrees to the right">
 </p>
 <div id="mynetwork"></div>
 
@@ -24,18 +25,22 @@
     var edges = null;
     var network = null;
     var labelCheckbox = document.getElementById("labelCheckbox");
+    var rotationPtr = 0; // pointer to the directions array
+    var rotationDirections = [ 'UD', 'RL', 'DU', 'LR' ];
     function destroy() {
         if (network !== null) {
             network.destroy();
             network = null;
         }
     }
-
     // CODEGEN_START
     // CODEGEN_END
     labelCheckbox.onchange = function () {
         draw();
-        console.log("box was changed");
+    }
+    rotationButton.onclick = function () {
+        rotationPtr = (rotationPtr + 1) % 4;
+        draw();
     }
 </script>
 </body>

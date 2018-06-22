@@ -51,7 +51,7 @@ export class GraphHtmlCodegen extends GraphCodegen {
           '  improvedLayout: true,',
           '  hierarchical: {',
           '    enabled: true,',
-          '    direction: "UD",',
+          '    direction: rotationDirections[rotationPtr],',
           '    sortMethod: "directed",',
           '    nodeSpacing: 200,',
           '    levelSeparation: 200,',
