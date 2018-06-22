@@ -15,8 +15,8 @@
     "noImplicitReturns": true,
     "noImplicitAny": false,
     "strictNullChecks": true,
-    "alwaysStrict": true
-    //"noUnusedLocals": true
+    "alwaysStrict": true,
+    "noUnusedLocals": true
   },
   "include": [
     "src/**/*"

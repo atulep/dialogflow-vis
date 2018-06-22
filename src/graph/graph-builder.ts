@@ -1,6 +1,4 @@
 import { Graph } from "./graph";
-import { Edge } from "./edge";
-import { Vertex } from "./vertex";
 
 export abstract class GraphBuilder {
   private _graph: Graph;

@@ -1,5 +1,4 @@
 import { Edge } from "../graph/edge";
-import { Graph } from "../graph/graph";
 import { Vertex } from "../graph/vertex";
 import { EdgeFactory } from "../graph/edge-factory";
 
